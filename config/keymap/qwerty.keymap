@@ -11,6 +11,7 @@
 #include "macros.dtsi"
 #include "behaviors.dtsi"
 #include "combos.dtsi"
+#include "keys_az_cyrillic.h"
 
 / {
 /* --- KEYMAP CONFIG --- */
