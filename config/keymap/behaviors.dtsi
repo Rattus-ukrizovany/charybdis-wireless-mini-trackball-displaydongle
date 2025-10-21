@@ -186,10 +186,16 @@
             tapping-term-ms = <125>;
         };
 
-        td_layers: td_layer_swap {
+        td_layers_0: td_layer_swap {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            bindings = <&to 0>, <&to 4>; // tap, double_tap
+            bindings = <&to 0>, <&lang_change>; // tap, double_tap
+        };
+        
+        td_layers_4: td_layer_swap {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&to 4>, <&lang_change>; // tap, double_tap
         };
 
         td_clk_scrl: td_click_or_scroll {
