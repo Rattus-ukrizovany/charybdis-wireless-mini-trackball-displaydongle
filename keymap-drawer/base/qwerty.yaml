@@ -169,47 +169,47 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   Game:
-  - '1'
+  - SEARCH
+  - RU CYRILLIC SHORT I
+  - RU CYRILLIC TSE
+  - RU CYRILLIC U
+  - RU CYRILLIC KA
+  - RU CYRILLIC IE
+  - RU CYRILLIC EN
+  - RU CYRILLIC GHE
+  - RU CYRILLIC SHA
+  - RU CYRILLIC SHCHA
+  - RU CYRILLIC ZE
+  - L_BASE L_GAME
   - TAB
-  - Q
-  - W
-  - E
-  - R
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - {t: ▽, type: trans}
-  - '2'
-  - LCTRL
-  - A
-  - S
-  - D
-  - F
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - '3'
-  - LSHFT
-  - Y
-  - X
-  - C
-  - V
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - SPACE
-  - LEFT ALT
-  - ''
-  - ''
+  - {t: RU CYRILLIC EF, h: LCMD}
+  - {t: RU CYRILLIC YERU, h: LALT}
+  - {t: RU CYRILLIC VE, h: LSHFT}
+  - {t: RU CYRILLIC A, h: LCTRL}
+  - RU CYRILLIC PE
+  - RU CYRILLIC ER
+  - {t: RU CYRILLIC O, h: RCTRL}
+  - {t: RU CYRILLIC EL, h: RSHFT}
+  - {t: RU CYRILLIC DE, h: LALT}
+  - {t: RU CYRILLIC ZHE, h: RCMD}
+  - RU CYRILLIC E
+  - CLIP HIST
+  - RU CYRILLIC YA
+  - RU CYRILLIC CHE
+  - RU CYRILLIC ES
+  - RU CYRILLIC EM
+  - RU CYRILLIC I
+  - RU CYRILLIC TE
+  - RU CYRILLIC SOFT SIGN
+  - RU CYRILLIC BE
+  - RU CYRILLIC YU
+  - {t: '?', s: '!'}
+  - /
+  - ESC SCRL SLOW
+  - SYM LCLK
+  - BS NUM
+  - ENTER
+  - SPACE NAV
   Xtra:
   - ZMK Studio
   - SHRUG
