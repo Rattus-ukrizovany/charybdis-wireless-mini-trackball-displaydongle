@@ -12,7 +12,7 @@ layers:
   - I
   - O
   - P
-  - '&td_layers_4'
+  - {t: '?', s: '!'}
   - TAB
   - {t: A, h: LCMD}
   - {t: S, h: LALT}
@@ -26,17 +26,17 @@ layers:
   - {t: ;, h: RCMD}
   - DEL
   - CLIP HIST
-  - {t: Z, h: LWIN}
+  - Z
   - X
   - C
   - V
   - B
   - N
   - M
-  - {t: ',', s: ;}
-  - {t: ., s: ':'}
-  - {t: '?', s: '!'}
+  - {t: ',', s: <}
+  - {t: ., s: RT}
   - /
+  - '&BSLH'
   - ESC SCRL SLOW
   - SYM LCLK
   - BS NUM
@@ -194,7 +194,7 @@ layers:
   - {t: RU CYRILLIC ZHE, h: RCMD}
   - RU CYRILLIC E
   - CLIP HIST
-  - {t: RU CYRILLIC YA, h: LWIN}
+  - RU CYRILLIC YA
   - RU CYRILLIC CHE
   - RU CYRILLIC ES
   - RU CYRILLIC EM
