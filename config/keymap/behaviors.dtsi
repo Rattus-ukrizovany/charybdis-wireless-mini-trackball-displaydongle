@@ -230,20 +230,6 @@
             #binding-cells = <0>;
             bindings      = <&kp COMMA>, <&kp SEMICOLON>;
             mods          = <(MOD_LSFT | MOD_RSFT)>;
-        };
-        
-        mm_cm_lt: comma_lt {
-            compatible    = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings      = <&kp COMMA>, <&kp LT>;
-            mods          = <(MOD_LSFT | MOD_RSFT)>;
-        };
-
-        mm_cm_rt: comma_rt {
-            compatible    = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings      = <&kp PERIOD>, <&kp RT>;
-            mods          = <(MOD_LSFT | MOD_RSFT)>;
-        };        
+        };       
     };
 };
