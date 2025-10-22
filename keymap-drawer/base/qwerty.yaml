@@ -36,7 +36,7 @@ layers:
   - KP COMMA
   - .
   - /
-  - '&BSLH'
+  - \
   - ESC SCRL SLOW
   - SYM LCLK
   - BS NUM
