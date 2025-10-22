@@ -33,14 +33,14 @@ layers:
   - B
   - N
   - M
-  - KP COMMA
+  - ','
   - .
   - /
   - \
   - ESC SCRL SLOW
   - SYM LCLK
   - BS NUM
-  - ENTER
+  - td enter symb
   - SPACE NAV
   Num:
   - ''
@@ -59,8 +59,8 @@ layers:
   - ''
   - ''
   - ''
-  - BACK SPACE
   - LSHIFT
+  - BACK SPACE
   - '-'
   - {t: '4', s: F4}
   - {t: '5', s: F5}
@@ -208,7 +208,7 @@ layers:
   - ESC SCRL SLOW
   - SYM LCLK
   - BS NUM
-  - ENTER
+  - td enter symb
   - SPACE NAV
   Xtra:
   - ZMK Studio
@@ -348,3 +348,5 @@ combos:
   k: Mid CLK
 - p: [27, 28]
   k: R CLK
+- p: [16, 36]
+  k: '&m0 6'
