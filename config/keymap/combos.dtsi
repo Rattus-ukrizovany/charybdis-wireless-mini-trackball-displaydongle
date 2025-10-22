@@ -27,5 +27,10 @@
             bindings = <&mkp RCLK>;
             key-positions = <27 28>;
         };
+
+        combo_precision_mouse {
+            bindings = <&m0 6>;
+            key-positions = <16 36>;
+        };
     };
 };

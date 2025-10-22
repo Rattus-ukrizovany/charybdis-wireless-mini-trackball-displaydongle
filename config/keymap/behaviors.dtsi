@@ -159,7 +159,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <170>;
-            bindings = <&mo_clk 3 LCLK>, <&mkp LCLK>; // hold, tap, double_tap
+            bindings = <&mo_clk 6 LCLK>, <&mkp LCLK>; // hold, tap, double_tap
         };
 
         mo_kp: mo_kp {
@@ -176,6 +176,13 @@
             #binding-cells = <0>;
             tapping-term-ms = <170>;
             bindings = <&mo_kp 1 BACKSPACE>, <&kp BACKSPACE>; // hold, tap, double_tap
+        };
+
+        td_enter_symb: td_enter_symb {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <170>;
+            bindings = <&lt_nav 3 ENTER>; // hold, tap
         };
 
         httl: ht_two_layers {
