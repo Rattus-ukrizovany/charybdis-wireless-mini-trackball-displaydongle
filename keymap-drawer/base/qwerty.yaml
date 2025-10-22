@@ -40,7 +40,7 @@ layers:
   - ESC SCRL SLOW
   - SYM LCLK
   - BS NUM
-  - td enter symb
+  - '&td_enter_symb'
   - SPACE NAV
   Num:
   - ''
@@ -208,7 +208,7 @@ layers:
   - ESC SCRL SLOW
   - SYM LCLK
   - BS NUM
-  - td enter symb
+  - '&td_enter_symb'
   - SPACE NAV
   Xtra:
   - ZMK Studio
