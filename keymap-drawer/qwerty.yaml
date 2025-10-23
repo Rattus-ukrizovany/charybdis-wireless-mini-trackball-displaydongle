@@ -97,12 +97,12 @@ layers:
   - {t: '9', s: F9}
   - {t: '%', s: F10}
   - ''
-  - {t: ▽, type: trans}
-  - ''
-  - ''
+  - TAB
+  - LCMD
+  - LALT
   - LSHIFT
+  - LCTRL
   - BACK SPACE
-  - ''
   - '-'
   - {t: '4', s: F4}
   - {t: '5', s: F5}
