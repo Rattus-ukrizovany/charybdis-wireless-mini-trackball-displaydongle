@@ -40,7 +40,7 @@ layers:
   - ESC SCRL SLOW
   - SYM LCLK
   - BS NUM
-  - '&td_enter_symb'
+  - ENTER
   - SPACE NAV
   Num:
   - ''
@@ -208,7 +208,7 @@ layers:
   - ESC SCRL SLOW
   - SYM LCLK
   - BS NUM
-  - '&td_enter_symb'
+  - ENTER
   - SPACE NAV
   Xtra:
   - ZMK Studio
@@ -289,8 +289,8 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {type: held}
   - {t: ▽, type: trans}
+  - {type: held}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -348,5 +348,5 @@ combos:
   k: Mid CLK
 - p: [27, 28]
   k: R CLK
-- p: [16, 36]
+- p: [16, 37]
   k: Slow
