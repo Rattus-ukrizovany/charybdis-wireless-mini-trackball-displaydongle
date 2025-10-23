@@ -124,11 +124,11 @@
             hold-trigger-key-positions = <KEYS_L THUMBS>;
         };
 
-        td_esc_scrl_slow: td_esc_scrl_slow {
+        td_esc_sym: td_esc_sym {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <150>;
-            bindings = <&lt 3 ESC>, <&mo 6>; // hold, tap, double_tap
+            bindings = <&lt 4 ESC>, <&mo 6>; // hold, tap, double_tap
         };
 
         lt_nav: nav_layer_tap {
@@ -143,7 +143,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <110>;
-            bindings = <&lt_nav 2 SPACE>, <&kp SPACE>; // hold, tap, double_tap
+            bindings = <&lt_nav 3 SPACE>, <&kp SPACE>; // hold, tap, double_tap
         };
 
         mo_clk: mo_click {
@@ -155,7 +155,7 @@
             bindings = <&mo>, <&mkp>;
         };
 
-        td_clk: td_clk {
+        td_mouse_scroll: td_mouse_scroll {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <170>;
@@ -171,18 +171,11 @@
             bindings = <&mo>, <&kp>;
         };
 
-        td_bs: td_bs {
+        td_backspace_num: td_backspace_num {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <170>;
-            bindings = <&mo_kp 1 BACKSPACE>, <&kp BACKSPACE>; // hold, tap, double_tap
-        };
-
-        td_enter_symb: td_enter_symb {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <170>;
-            bindings = <&lt_nav 3 ENTER>; // hold, tap
+            bindings = <&mo_kp 2 BACKSPACE>, <&kp BACKSPACE>; // hold, tap, double_tap
         };
 
         httl: ht_two_layers {
@@ -199,10 +192,10 @@
             bindings = <&to 0>, <&lang_change>; // tap, double_tap
         };
         
-        td_layers_4: td_layer_swap_4 {
+        td_layers_1: td_layer_swap_1 {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            bindings = <&to 4>, <&lang_change>; // tap, double_tap
+            bindings = <&to 1>, <&lang_change>; // tap, double_tap
         };
 
         td_clk_scrl: td_click_or_scroll {

@@ -1,7 +1,7 @@
 layout: {zmk_keyboard: qwerty}
 layers:
   Base:
-  - '&td_layers_4'
+  - '&td_layers_1'
   - Q
   - W
   - E
