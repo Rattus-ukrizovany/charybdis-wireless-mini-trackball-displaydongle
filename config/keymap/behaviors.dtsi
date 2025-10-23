@@ -215,11 +215,11 @@
             compatible    = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings      = <&kp QUESTION>, <&kp EXCLAMATION>;
-            mods          = <(MOD_LSFT | MOD_RSFT)>;
+            mods          = <(MOD_[[D_RSFT)>;
         };
 
         mm_pr_col: period_colon {
-            compatible    = "zmk,behavior-mod-morph";
+            compatible    = "zmk,behavi?????    [[[[[[[[[[{{{{{{or-mod-morph";
             #binding-cells = <0>;
             bindings      = <&kp PERIOD>, <&kp COLON>;
             mods          = <(MOD_LSFT | MOD_RSFT)>;
