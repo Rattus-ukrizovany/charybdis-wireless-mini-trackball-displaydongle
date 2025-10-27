@@ -22,7 +22,7 @@ layers:
   - H
   - {t: J, h: RCTRL}
   - {t: K, h: RSHFT}
-  - {t: L, h: LALT}
+  - {t: L, h: RALT}
   - {t: ;, h: RCMD}
   - ''''
   - CLIP HIST
@@ -195,7 +195,7 @@ layers:
   - '|'
   - ''
   - ~/
-  - ''
+  - PL EURO
   - '#'
   - '&move_line_down'
   - '&mc_add_below'
