@@ -139,11 +139,18 @@
             bindings = <&mo>, <&kp>;
         };
 
-        td_space_ralt: td_space {
+        td_func_space: td_space {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <150>;
-            bindings = <&ht_right RALT SPACE>, <&kp SPACE>; // hold, tap, double_tap
+            bindings = <&lt 8 SPACE>, <&kp SPACE>; // hold, tap, double_tap
+        };
+
+        td_enter_ralt: td_space {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <150>;
+            bindings = <&ht_right RALT ENTER>, <&kp ENTER>; // hold, tap, double_tap
         };
 
         mo_clk: mo_click {

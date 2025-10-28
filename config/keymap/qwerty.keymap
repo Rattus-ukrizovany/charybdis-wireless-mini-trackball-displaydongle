@@ -34,6 +34,7 @@
 // #define EXTRAS  5
 // #define SLOW    6
 // #define SCROLL  7
+// #define FUNC    8
 
     keymap {
         compatible = "zmk,keymap";
@@ -47,8 +48,8 @@
 // ├───────────────┼────────────────┼────────────────┼─────────────────┼─────────────────┼──────┤  ├──────┼──────────────────┼──────────────────┼───────────────────┼────────────────────────┼─────────────┤
     &clip_hist      &kp Z            &kp X            &kp C             &kp V             &kp B     &kp N  &kp M              &kp COMMA          &kp PERIOD          &mm_qm_ex                 &kp FSLH 
 // ╰───────────────┴────────────────┴────────────────┼─────────────────┼─────────────────┼──────┤  ├──────┼──────────────────┼──────────────────┴───────────────────┴────────────────────────┴─────────────╯
-                                             &td_esc_sym   &td_mouse_scroll   &td_backspace_num     &kp ENTER   &td_space_ralt
-                                         // ╰────────────┴──────────────────┴───────────────────╯  ╰──────────┴──────────────╯
+                                             &td_esc_sym   &td_mouse_scroll   &td_backspace_num     &td_enter_ralt   &td_func_space
+                                         // ╰────────────┴──────────────────┴───────────────────╯  ╰───────────────┴────────────────╯
             >;
         };
 
@@ -62,8 +63,8 @@
 // ├─────────────────┼──────────────────────────────┼───────────────────────────────┼──────────────────────────── ──┼──────────────────────────────┼────────────────────┤  ├───────────────────┼───────────────────────────────┼───────────────────────────────┼──────────────────────────────┼──────────────────────────────────┼───────────────────────────┤
      &clip_hist        &kp RU_CYRILLIC_YA             &kp RU_CYRILLIC_CHE             &kp RU_CYRILLIC_ES              &kp RU_CYRILLIC_EM             &kp RU_CYRILLIC_I      &kp RU_CYRILLIC_TE   &kp RU_CYRILLIC_SOFT_SIGN       &kp RU_CYRILLIC_BE              &kp RU_CYRILLIC_YU               &mm_pr_col                       &kp RU_CYRILLIC_HARD_SIGN
 // ╰─────────────────┴──────────────────────────────┴───────────────────────────────┼──────────────────────────── ──┼──────────────────────────────┼────────────────────┤  ├───────────────────┼───────────────────────────────┴───────────────────────────────┴──────────────────────────────┴──────────────────────────────────┴───────────────────────────╯
-                                                                                                                     &td_esc_sym   &td_mouse_scroll   &td_backspace_num     &kp ENTER   &td_space_ralt
-                                                                                                                 // ╰────────────┴──────────────────┴───────────────────╯  ╰──────────┴──────────────╯
+                                                                                                                     &td_esc_sym   &td_mouse_scroll   &td_backspace_num     &kp ENTER   &td_func_space
+                                                                                                                 // ╰────────────┴──────────────────┴───────────────────╯  ╰──────────┴───────────────╯
             >;
         };
 
@@ -124,6 +125,16 @@
 &kp TAB  &mkp MB4        &kp LALT        &kp LSHFT    &kp LCTRL       &mkp MB5            &kp INSERT       &kp LEFT_ARROW     &kp DOWN     &kp UP          &kp RIGHT_ARROW   &none
 &none    &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP &mmv MOVE_RIGHT &none               &kp DELETE       &kp HOME           &kp PG_DN    &kp PG_UP       &kp END           &none
                                                       &none   &none   &none               &none   &trans
+            >;
+        };
+
+        FUNC {
+            display-name = "Functional";
+            bindings = <
+&none    &none     &none     &none       &none      &none            &kp PLUS     &kp f7             &kp f8             &kp f9             &kp f10            &none
+&kp TAB  &kp LCMD  &kp LALT  &kp LSHIFT  &kp LCTRL  &kp BACKSPACE    &kp MINUS    &kp f4             &kp f5             &kp f6             &kp f11            &none
+&none    &none     &kp X     &none       &none      &none            &kp EQUAL    &kp f1             &kp f2             &kp f3             &kp f12            &kp KP_SLASH
+                             &none       &none      &trans           &trans       &trans
             >;
         };
     };
