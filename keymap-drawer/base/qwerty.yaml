@@ -35,8 +35,8 @@ layers:
   - M
   - ','
   - .
-  - {t: '?', s: '!'}
   - /
+  - {t: '?', s: '!'}
   - ESC SCRL SLOW
   - SYM LCLK
   - BS NUM
