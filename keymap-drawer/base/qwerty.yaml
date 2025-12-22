@@ -1,7 +1,7 @@
 layout: {zmk_keyboard: qwerty}
 layers:
   Base:
-  - '&td_layers_1'
+  - RU LANG
   - Q
   - W
   - E
@@ -37,13 +37,13 @@ layers:
   - .
   - /
   - {t: '?', s: '!'}
-  - ESC SCRL SLOW
-  - SYM LCLK
+  - ESC SYM
+  - LCLK SCRL
   - BS NUM
-  - '&td_enter_ralt'
-  - SPACE NAV
+  - ENTER RALT
+  - SPACE FUNC
   Russan:
-  - '&td_layers_0'
+  - ENG LANG
   - RU CYRILLIC SHORT I
   - RU CYRILLIC TSE
   - RU CYRILLIC U
@@ -79,11 +79,11 @@ layers:
   - RU CYRILLIC YU
   - RU PERIOD
   - RU CYRILLIC HARD SIGN
-  - ESC SCRL SLOW
-  - SYM LCLK
+  - ESC SYM
+  - LCLK SCRL
   - BS NUM
   - ENTER
-  - SPACE NAV
+  - SPACE FUNC
   Num:
   - ''
   - ''
