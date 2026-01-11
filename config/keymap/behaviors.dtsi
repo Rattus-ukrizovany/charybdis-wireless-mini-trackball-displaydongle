@@ -126,7 +126,7 @@
             hold-trigger-on-release;
         };
 
-        ht_left_shift: left_side_homerow_mod {
+        ht_left_shift: left_shift_homerow_mod {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
@@ -139,7 +139,7 @@
             hold-trigger-on-release;
         };        
 
-        ht_right_shift: left_side_homerow_mod {
+        ht_right_shift: right_shift_homerow_mod {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
