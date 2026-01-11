@@ -14,7 +14,7 @@
         };
         
         combo_left_click {
-            bindings = <&td_mouse_scroll>;
+            bindings = <&mkp LCLK>;
             key-positions = <25 26>;
         };
         
