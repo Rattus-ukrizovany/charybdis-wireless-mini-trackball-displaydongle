@@ -38,7 +38,7 @@ layers:
   - /
   - {t: '?', s: '!'}
   - ESC SYM
-  - LCLK SCRL
+  - L CLK
   - BS NUM
   - ENTER RALT
   - SPACE FUNC
@@ -80,7 +80,7 @@ layers:
   - RU PERIOD
   - RU CYRILLIC HARD SIGN
   - ESC SYM
-  - LCLK SCRL
+  - L CLK
   - BS NUM
   - ENTER
   - SPACE FUNC
@@ -385,7 +385,7 @@ combos:
 - p: [38, 39]
   k: L_BASE L_EXTRA
 - p: [25, 26]
-  k: L CLK
+  k: LCLK SCRL
 - p: [26, 27]
   k: Mid CLK
 - p: [27, 28]
