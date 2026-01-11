@@ -210,7 +210,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <150>;
-            bindings = <&mo_kp 2 BACKSPACE>, <&kp BACKSPACE>; // hold, tap, double_tap
+            bindings = <&lt 2 BACKSPACE>, <&kp BACKSPACE>; // hold, tap, double_tap
         };
 
         httl: ht_two_layers {
