@@ -136,7 +136,6 @@
             retro-tap;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <KEYS_R THUMBS>;
-            hold-trigger-on-release;
         };        
 
         ht_right_shift: right_shift_homerow_mod {
@@ -149,7 +148,6 @@
             retro-tap;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <KEYS_L THUMBS>;
-            hold-trigger-on-release;
         };
 
         td_esc_sym: td_esc_sym {
