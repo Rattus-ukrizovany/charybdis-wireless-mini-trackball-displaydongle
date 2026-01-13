@@ -129,7 +129,7 @@
         ht_left_shift: left_shift_homerow_mod {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "hold-preferred";
+            flavor = "balanced";
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
             require-prior-idle-ms = <50>;
@@ -141,7 +141,7 @@
         ht_right_shift: right_shift_homerow_mod {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "hold-preferred";
+            flavor = "balanced";
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
             require-prior-idle-ms = <50>;
@@ -168,15 +168,15 @@
         td_func_space: td_func_space {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <250>;
+            tapping-term-ms = <170>;
             bindings = <&lt 8 SPACE>, <&kp SPACE>; // hold, tap, double_tap
         };
 
         td_enter_ralt: td_enter_ralt {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <150>;
-            bindings = <&ht_right RALT ENTER>, <&kp ENTER>; // hold, tap, double_tap
+            tapping-term-ms = <170>;
+            bindings = <&ht_right_shift RALT ENTER>, <&kp ENTER>; // hold, tap, double_tap
         };
 
         mo_clk: mo_click {
@@ -207,7 +207,7 @@
         td_backspace_num: td_backspace_num {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <250>;
+            tapping-term-ms = <170>;
             bindings = <&lt 2 BACKSPACE>, <&kp BACKSPACE>; // hold, tap, double_tap
         };
 
