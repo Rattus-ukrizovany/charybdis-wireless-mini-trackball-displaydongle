@@ -12,7 +12,7 @@ layers:
   - I
   - O
   - P
-  - DELETE
+  - BACK SPACE
   - LEFT SHIFT
   - A
   - S
