@@ -61,8 +61,8 @@ layers:
   - '#'
   - $
   - '%'
+  - {t: ▽, type: trans}
   - L CLK
-  - Mid CLK
   - R CLK
   - (
   - )
@@ -99,9 +99,9 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - PREV
+  - PLAY PAUSE
+  - NEXT
   - {t: ▽, type: trans}
   - LEFT
   - DOWN
@@ -116,7 +116,7 @@ layers:
   - ''
   - ''
   - '='
-  - Gui+ -
+  - '-'
   - VOLUME DOWN
   - VOLUME UP
   - {t: ▽, type: trans}
