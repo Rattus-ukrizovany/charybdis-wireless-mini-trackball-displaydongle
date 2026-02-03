@@ -1,11 +1,10 @@
 name: Draw keymaps
 run-name: Draw keymaps
 
-  workflow_dispatch:
 
 on:
   push:
-
+  workflow_dispatch:
 jobs:
   draw_base_keymap:
     name: Draw BASE keymap
