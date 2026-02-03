@@ -50,8 +50,8 @@
             >;
         };
 
-        Numbers {
-            display-name = "Numb";
+        NUM {
+            display-name = "Numbers";
             bindings = <
 &trans  &kp NUMBER_1     &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp NUMBER_5    &kp NUMBER_6  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9          &kp NUMBER_0           &kp DELETE
 &trans  &kp EXCLAMATION  &kp AT        &kp HASH      &kp DOLLAR    &kp PERCENT     &trans        &mkp LCLK     &mkp RCLK     &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &trans
@@ -60,8 +60,8 @@
             >;
         };
 
-        Nav {
-            display-name = "Nav";
+        NAV {
+            display-name = "Media";
             bindings = <
 &none   &none   &none       &none             &none       &none     &trans     &trans     &trans             &trans           &trans  &trans
 &trans  &trans  &kp K_PREV  &kp K_PLAY_PAUSE  &kp K_NEXT  &trans    &kp LEFT   &kp DOWN   &kp UP             &kp RIGHT        &trans  &trans
@@ -70,7 +70,7 @@
             >;
         };
 
-        bing {
+        Bing {
             display-name = "bong";
             bindings = <
 &none    &msc MOVE_LEFT  &msc MOVE_UP    &none         &msc MOVE_DOWN   &msc MOVE_RIGHT    &trans      &trans          &trans     &trans     &trans           &none
