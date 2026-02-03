@@ -488,7 +488,7 @@ This keyboard uses **9 layers** with **42 keys** per layer (36 main keys + 6 thu
 | 0 | **BASE**    | Rattus       | Standard typing with Polish character support |
 | 1 | **NUM**     | Numbers      | Numbers + function keys                      |
 | 2 | **NAV**     | Media        | Media controls and navigation                |
-| 3 | **MOUSE**   | bong         | Mouse movement, scrolling, and navigation    |
+| 3 | **MOUSE**   | bong         | Mouse movement, scrolling, and navigation (display name "bong" from keymap) |
 | 4 | **SYM**     | Sym          | Symbols and punctuation                      |
 | 5 | **EXTRAS**  | Xtra         | Shortcuts, Bluetooth controls                |
 | 6 | **SLOW**    | Slow         | Low-speed pointer mode                       |
@@ -533,7 +533,8 @@ The 6th thumb key (K41, Right Alt) provides easy access to Polish characters and
     - Tap: Space
 - **K40 - Layer 3 (MOUSE) Access:**
     - Hold: Activates MOUSE layer for navigation and mouse controls
-- **Bluetooth profile quick-swap:** Jump to the EXTRAS layer (5) and tap the dedicated BT-select keys to pair or switch among up to four saved hosts (plus BT CLR to forget all)
+- **Bluetooth profile quick-swap:** Jump to the EXTRAS layer (5) and tap the dedicated BT-select 
+  keys to pair or switch among up to four saved hosts (plus BT CLR to forget all)
 - **PMW3610 low power trackball sensor driver:** Provided by [badjeff](https://github.com/badjeff/zmk-pmw3610-driver)
     - Patched to remove build warnings and prevent cursor jump on wake
 - **Modifier keys readily accessible:** Left Shift, Left Ctrl on home row; Left GUI/Win and Right Alt on thumb keys
