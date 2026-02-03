@@ -41,6 +41,7 @@ layers:
   - Second
   - SPACE
   - ENTER
+  - Nav
   - Num
   Second:
   - {t: ▽, type: trans}
@@ -81,6 +82,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {type: held}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -125,6 +127,7 @@ layers:
   - ''
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - {type: held}
   Nav:
   - ''
@@ -167,6 +170,7 @@ layers:
   - ''
   - ''
   - ''
+  - {type: held}
   - {t: ▽, type: trans}
   Sym:
   - ''
@@ -210,6 +214,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   Xtra:
   - ZMK Studio
   - {t: ▽, type: trans}
@@ -246,6 +251,7 @@ layers:
   - VOLUME DOWN
   - VOLUME UP
   - PRINT SCREEN
+  - ''
   - ''
   - ''
   - ''
@@ -294,6 +300,7 @@ layers:
   - ''
   - ''
   - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   Scroll:
   - ''
   - WHEEL L
@@ -336,6 +343,7 @@ layers:
   - ''
   - ''
   - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   Functional:
   - ''
   - ''
@@ -375,6 +383,7 @@ layers:
   - ''
   - ''
   - ''
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
