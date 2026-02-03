@@ -1,4 +1,4 @@
-# 🛠️ Local ZMK Firmware Builds (Dockerized)
+# Local ZMK Firmware Builds (Dockerized)
 
 This setup provides a **fast, containerized build environment** for [ZMK Firmware](https://zmk.dev), allowing you to compile firmware locally without pushing changes to GitHub or installing any toolchains on your system.
 
@@ -60,7 +60,7 @@ firmwares/
 
 ---
 
-## 💡 Tips
+## Tips
 
 ### Drop into a shell for troubleshooting
 
@@ -100,7 +100,7 @@ bash ./local-build/build_setup.sh
 
 ---
 
-## 📚 More Resources
+## Additional Resources
 
 - [ZMK Documentation](https://zmk.dev/docs)
 - [ZMK Dev Container Setup](https://zmk.dev/docs/development/local-toolchain/setup/container)

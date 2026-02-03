@@ -41,7 +41,7 @@ Display can be ordered [here(non-touch version)](https://www.waveshare.com/1.69i
 
 ### Right Half Battery (Critical for Trackball)
 
-⚠️ **IMPORTANT:** The PMW3610 trackball sensor consumes significant power. I **recommend using a 1000mAh** for the right half instead of a standard 130mAh battery.
+**IMPORTANT:** The PMW3610 trackball sensor consumes significant power. I **recommend using a 1000mAh** for the right half instead of a standard 130mAh battery.
 
 #### Battery Comparison
 
@@ -203,7 +203,7 @@ For detailed trackball customization, see [Modifying Trackball Behavior](#modify
 
 ### Dongle Display Support
 
-> **Note:** Display support for the dongle is currently under development. Check the [zmk-dongle-screen](https://github.com/janpfischer/zmk-dongle-screen) repository for the latest updates.
+**Note:** Display support for the dongle is currently under development. Check the [zmk-dongle-screen](https://github.com/janpfischer/zmk-dongle-screen) repository for the latest updates.
 
 The dongle can be equipped with a **1.69" SPI display** for status information. Wiring guide available in `docs/nice_nano_wire_guide.md`.
 
@@ -217,9 +217,9 @@ This firmware supports multiple keyboard layouts out of the box:
 
 | Layout | File | Status | Notes |
 |--------|------|--------|-------|
-| **QWERTY** | `config/keymap/qwerty.keymap` | ✅ Primary | Standard English layout |
-| **Polish** | Custom config | ✅ Supported | See [Polish Layout](#polish-layout) |
-| **Russian** | Custom config | ✅ Supported | See [Russian Layout](#russian-layout) |
+| **QWERTY** | `config/keymap/qwerty.keymap` | Primary | Standard English layout |
+| **Polish** | Custom config | Supported | See [Polish Layout](#polish-layout) |
+| **Russian** | Custom config | Supported | See [Russian Layout](#russian-layout) |
 
 ### Polish Layout
 
@@ -310,7 +310,7 @@ docker-compose run --rm builder
 
 ### First-Time Setup
 
-> ⚠️ **Important:** If flashing for the first time or switching between Bluetooth and Dongle configurations:
+**Important:** If flashing for the first time or switching between Bluetooth and Dongle configurations:
 
 1. **Flash the reset firmware first** to all devices:
 
@@ -448,14 +448,14 @@ To see all the layers check out the [full render](keymap-drawer/qwerty.svg).
 | 7 | **SCROLL**  | Vertical/horizontal scrolling and navigation |
 | 8 | **FUNC**    | Functional                                   |
 
-🏠 Home-Row Mods
+### Home-Row Mods
 | Side                | Hold = Modifier              | Tap = Letter / Key  |
 | ------------------- | ---------------------------- | ------------------- |
 | Left                | **Gui / Alt / Shift / Ctrl** | `A S D F`           |
 | Right               | **Ctrl / Shift / Alt / Gui** | `J K L ;`           |
 
 
-🔗 Combos
+### Combos
 | Trigger Keys              | Result                                 |
 | ------------------------- | -------------------------------------- |
 | `K17 + K18`               | **Caps Word** (one-shot words in CAPS) |
@@ -463,10 +463,10 @@ To see all the layers check out the [full render](keymap-drawer/qwerty.svg).
 | `K26 + K27`               | **Middle Click**                       |
 | `K27 + K28`               | **Right Click**                        |
 | `K13 + K22`               | Toggle **MOUSE** layer                 |
-| `K38 + K39` (thumb cluster)| Layer-swap **BASE ⇄ EXTRAS**           |
+| `K38 + K39` (thumb cluster)| Layer-swap **BASE <-> EXTRAS**         |
 
 
-⚙️ Other Highlights
+### Additional Features
 - **Timeless home row mods:** Based on [urob's](https://github.com/urob/zmk-config#timeless-homerow-mods) work and configured on the BASE layer with balanced flavor on both halves (280 ms tapping-term, and quick-tap with prior-idle tuning).
 - **Thumb-scroll mode:** Hold the left-most thumb button (K36) while moving the trackball to turn motion into scroll.
 - **Precision cursor mode:** Double-tap, then hold K36 to drop the pointer speed, release to return to normal speed.
