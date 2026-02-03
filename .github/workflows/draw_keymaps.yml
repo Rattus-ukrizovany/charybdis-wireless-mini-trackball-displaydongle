@@ -1,6 +1,8 @@
 name: Draw keymaps
 run-name: Draw keymaps
 
+  workflow_dispatch:
+
 on:
   push:
 
