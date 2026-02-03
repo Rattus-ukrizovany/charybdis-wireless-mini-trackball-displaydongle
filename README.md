@@ -18,7 +18,7 @@ This comprehensive guide covers the assembly of the **Charybdis Wireless Mini ke
 | **Diodes** | 1N4148 signal diodes (1 per key) |
 | **Stabilizers** | For longer keys (spacebar, etc.) |
 | **PMW3610 Sensor** | Trackball sensor (right half) |
-| **Mechanical Switches** | MX-compatible switches (36-42 keys depending on layout) |
+| **Mechanical Switches** | MX-compatible switches (42 keys: 36 main + 6 thumb) |
 | **Keycaps** | Any standard MX keycaps |
 | **USB-C Cable** | For flashing and programming |
 | **Battery** | See [Battery Recommendations](#battery-recommendations) |
@@ -186,80 +186,107 @@ docker-compose run --rm builder -s charybdis_dongle -k qwerty
 All trackball parameters are configured in `config/charybdis_pointer.dtsi`:
 
 ```dts
-// Example: Adjust pointer speed
-// Modify values in charybdis_pointer.dtsi
-pointer {
-    speed = <1000>;      // Pointer speed multiplier
-    acceleration = <0>;  // Acceleration curve
-};
+// Current configuration in charybdis_pointer.dtsi
+&trackball_listener {
+    /* base processor chain on all layers */
+    input-processors = <&zip_xy_scaler 5 5>;
 
-// Example: Configure scrolling
-scrolling {
-    speed = <5>;         // Scroll speed
+    /* layer-7 scroll override */
+    scroller: scroller {
+        layers           = <7>;
+        input-processors = <
+            &zip_xy_scaler 1 15                              // Scales the scroll speed
+            &zip_xy_to_scroll_mapper                         // Converts XY movement to scroll events
+            &zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT) // Inverts the scroll direction
+        >;
+    };
+
+    /* layer-6 slow-pointer override */
+    slow_pointer: slow_pointer {
+        layers           = <6>;
+        input-processors = <&zip_xy_scaler 2 6>;
+    };
 };
 ```
 
-For detailed trackball customization, see [Modifying Trackball Behavior](#modifying-trackball-behavior) in the main README.
+For detailed trackball customization, see [Modifying Trackball Behavior](#modifying-trackball-behavior) below.
 
 ### Dongle Display Support
 
-> **Note:** Display support for the dongle is currently under development. Check the [zmk-dongle-screen](https://github.com/janpfischer/zmk-dongle-screen) repository for the latest updates.
+The dongle configuration includes support for a **1.69" SPI display** to show status information. The `dongle_screen` shield is included in the dongle build (see `build.yaml`).
 
-The dongle can be equipped with a **1.69" SPI display** for status information. Wiring guide available in `docs/nice_nano_wire_guide.md`.
+**Hardware:**
+- 1.69" SPI display module ([non-touch version](https://www.waveshare.com/1.69inch-touch-lcd-module.htm))
+- Wiring guide available in `docs/nice_nano_wire_guide.md`
+
+**Configuration:**
+- Display shield: `dongle_screen` (included in dongle build)
+- Based on [zmk-dongle-screen](https://github.com/janpfischer/zmk-dongle-screen) repository
+
+The display shows keyboard status, battery levels, active layer information, and connection status.
 
 ---
 
 ## Keyboard Layouts
 
-This firmware supports multiple keyboard layouts out of the box:
+### Primary Layout
 
-### Supported Layouts
+This firmware uses **QWERTY** as the primary keyboard layout:
 
 | Layout | File | Status | Notes |
 |--------|------|--------|-------|
-| **QWERTY** | `config/keymap/qwerty.keymap` | ✅ Primary | Standard English layout |
-| **Polish** | Custom config | ✅ Supported | See [Polish Layout](#polish-layout) |
-| **Russian** | Custom config | ✅ Supported | See [Russian Layout](#russian-layout) |
+| **QWERTY** | `config/keymap/qwerty.keymap` | ✅ Primary | Standard English layout with 42 keys (36 main + 6 thumb) |
 
-### Polish Layout
+### Multi-Language Support
 
-Polish keyboard layout is fully supported through custom key mappings. Configuration files:
+The QWERTY layout includes support for Polish and Russian characters through custom character definitions integrated into the keymap layers:
 
-- `config/keys_pl.h` - Polish character definitions
-- Add to your keymap: `#include "keys_pl.h"`
+#### Polish Character Support
 
-Polish-specific keys include: Ą, Ć, Ę, Ł, Ń, Ó, Ś, Ź, Ż and their uppercase variants. No need to switch. Use RAlt for special characters.
+Polish characters are available through the BASE layer using custom key definitions:
 
-### Russian Layout
+- **Configuration**: `config/keys_pl.h` - Polish character definitions (already included in keymap)
+- **Characters**: Ą, Ć, Ę, Ł, Ń, Ó, Ś, Ź, Ż and their uppercase variants
+- **Usage**: Use RAlt (Right Alt) modifier with appropriate keys to access Polish characters
+- **No OS switching required**: Works with Polish keyboard layout at OS level
 
-Russian (Cyrillic) keyboard layout is fully supported. Configuration files:
+#### Russian Character Support
 
-- `config/keys_ru.h` - Russian character definitions
-- Add to your keymap: `#include "keys_ru.h"`
+Russian (Cyrillic) characters are available through dedicated keyboard layers:
 
-Russian-specific keys provide access to Cyrillic alphabet and common symbols.
-To enable Russian input, switch your OS keyboard layout to Russian(cmd+space) and switch to Russian layer(will enable all required inputs).
+- **Configuration**: `config/keys_ru.h` - Russian character definitions (already included in keymap)
+- **Characters**: Full Cyrillic alphabet and common Russian symbols
+- **Usage**: Switch your OS keyboard layout to Russian, then use the designated layer for Russian input
+- **Layer integration**: Russian characters are accessible through the keymap layers
 
 ### Adding Custom Layouts
 
-To add a new layout:
+To add a new keyboard layout:
 
 1. Create a new `.keymap` file in `config/keymap/`
-2. Define your key mappings following ZMK syntax
+2. Define your key mappings following ZMK syntax (42 keys per layer: 36 main + 6 thumb)
 3. Reference any custom key definitions (e.g., `keys_pl.h`, `keys_ru.h`)
-4. Build the firmware - it will automatically detect and build your new layout
+4. Update `build.yaml` to include your new layout in the build matrix
+5. Build the firmware - GitHub Actions or local build will compile your layout
 
 Example:
 
 ```bash
-# Copy and modify an existing keymap
+# Copy and modify the existing QWERTY keymap
 cp config/keymap/qwerty.keymap config/keymap/my_layout.keymap
 
 # Edit my_layout.keymap with your custom mappings
+# Remember: Each layer needs 42 key bindings (36 main + 6 thumb)
 
-# Build - it will automatically include my_layout
+# Add to build.yaml matrix
+# - name: my_layout-bt
+#   board: nice_nano_v2
+#   keymap: my_layout
+#   shields: [charybdis_left, charybdis_right]
+
+# Build locally
 cd local-build
-docker-compose run --rm builder
+docker-compose run --rm builder -k my_layout
 ```
 
 ---
@@ -334,48 +361,64 @@ This clears any previous pairing information and ensures a clean state.
 
 ## Modifying Trackball Behavior
 
-The trackball uses ZMK's modular input processor system for easy customization.
+The trackball uses ZMK's modular input processor system for customization.
 
 ### Configuration File
 
 All trackball settings are in `config/charybdis_pointer.dtsi`.
 
+### Current Configuration
+
+The trackball is configured with three processor chains:
+
+1. **Base (all layers)**: `&zip_xy_scaler 5 5` - Normal pointer movement
+2. **SCROLL layer (7)**: Converts trackball movement to scroll events with inverted Y-axis
+3. **SLOW layer (6)**: `&zip_xy_scaler 2 6` - Reduced pointer speed for precision work
+
 ### Common Adjustments
 
-#### Pointer Speed
+#### Adjusting Base Pointer Speed
 
 ```dts
 // In charybdis_pointer.dtsi
-pointer {
-    speed = <1000>;  // Increase for faster movement (1000-2000)
+&trackball_listener {
+    // Change 5 5 to higher values for faster movement (e.g., 8 8)
+    // Change to lower values for slower movement (e.g., 3 3)
+    input-processors = <&zip_xy_scaler 5 5>;
+```
+
+#### Adjusting Scroll Speed
+
+```dts
+// In charybdis_pointer.dtsi - scroller configuration
+scroller: scroller {
+    layers           = <7>;
+    input-processors = <
+        &zip_xy_scaler 1 15    // Change 15 to higher for faster scroll
+        &zip_xy_to_scroll_mapper
+        &zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)
+    >;
 };
 ```
 
-#### Acceleration
+#### Adjusting Precision Mode Speed
 
 ```dts
-// Add acceleration curve
-pointer {
-    acceleration = <250>;  // Adjust sensitivity ramp-up
+// In charybdis_pointer.dtsi - slow_pointer configuration
+slow_pointer: slow_pointer {
+    layers           = <6>;
+    input-processors = <&zip_xy_scaler 2 6>;  // Adjust 2 6 for different slow speeds
 };
 ```
 
-#### Scroll Behavior
+#### Changing Scroll Direction
 
 ```dts
-// Configure scrolling
-scrolling {
-    speed = <5>;  // Scroll distance per movement
-};
-```
+// Remove Y_INVERT to change scroll direction
+&zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)
 
-#### Precision Mode
-
-```dts
-// Slow pointer speed for detailed work
-slow-pointer {
-    speed = <200>;  // Much slower than normal
-};
+// Or add X_INVERT for horizontal scroll inversion
+&zip_scroll_transform (INPUT_TRANSFORM_X_INVERT)
 ```
 
 ### Building After Changes
@@ -436,24 +479,37 @@ Edit `config/keymap/qwerty.keymap` (or your layout file) directly:
 
 To see all the layers check out the [full render](keymap-drawer/qwerty.svg).
 
-| # | Layer       | Purpose                                      |
-|---|-------------|----------------------------------------------|
-| 0 | **BASE**    | Standard typing with home-row mods(ENG+POL)  |
-| 1 | **RUSSIAN** | Russian layout with home-row mods            |
-| 2 | **NUM**     | Numbers + function keys                      |
-| 3 | **NAV**     | Navigation, arrows, paging                   |
-| 4 | **SYM**     | Symbols and punctuation                      |
-| 5 | **EXTRAS**  | Shortcuts, Bluetooth controls                |
-| 6 | **SLOW**    | Low-speed pointer mode                       |
-| 7 | **SCROLL**  | Vertical/horizontal scrolling and navigation |
-| 8 | **FUNC**    | Functional                                   |
+#### Layer Summary
 
-🏠 Home-Row Mods
-| Side                | Hold = Modifier              | Tap = Letter / Key  |
-| ------------------- | ---------------------------- | ------------------- |
-| Left                | **Gui / Alt / Shift / Ctrl** | `A S D F`           |
-| Right               | **Ctrl / Shift / Alt / Gui** | `J K L ;`           |
+This keyboard uses **9 layers** with **42 keys** per layer (36 main keys + 6 thumb keys):
 
+| # | Layer       | Display Name | Purpose                                      |
+|---|-------------|--------------|----------------------------------------------|
+| 0 | **BASE**    | Rattus       | Standard typing with Polish character support |
+| 1 | **NUM**     | Numbers      | Numbers + function keys                      |
+| 2 | **NAV**     | Media        | Media controls and navigation                |
+| 3 | **MOUSE**   | bong         | Mouse movement, scrolling, and navigation (display name "bong" from keymap) |
+| 4 | **SYM**     | Sym          | Symbols and punctuation                      |
+| 5 | **EXTRAS**  | Xtra         | Shortcuts, Bluetooth controls                |
+| 6 | **SLOW**    | Slow         | Low-speed pointer mode                       |
+| 7 | **SCROLL**  | Scroll       | Vertical/horizontal scrolling and navigation |
+| 8 | **FUNC**    | Functional   | Function keys (F1-F12)                       |
+
+#### 6-Key Thumb Clusters
+
+This keyboard features **6 thumb keys total** (3 per side):
+
+**Left Thumb Cluster (3 keys):**
+- K36: Left GUI (Win/Cmd)
+- K37: Layer 1 (NUM) hold
+- K38: Space
+
+**Right Thumb Cluster (3 keys):**
+- K39: Enter
+- K40: Layer 3 (MOUSE) hold  
+- K41: Right Alt
+
+The 6th thumb key (K41, Right Alt) provides easy access to Polish characters and other AltGr-based symbols when using appropriate OS keyboard layouts.
 
 🔗 Combos
 | Trigger Keys              | Result                                 |
@@ -463,28 +519,26 @@ To see all the layers check out the [full render](keymap-drawer/qwerty.svg).
 | `K26 + K27`               | **Middle Click**                       |
 | `K27 + K28`               | **Right Click**                        |
 | `K13 + K22`               | Toggle **MOUSE** layer                 |
-| `K38 + K39` (thumb cluster)| Layer-swap **BASE ⇄ EXTRAS**           |
+| `K38 + K39` (thumb keys)  | Layer-swap **BASE ⇄ EXTRAS**           |
 
 
 ⚙️ Other Highlights
-- **Timeless home row mods:** Based on [urob's](https://github.com/urob/zmk-config#timeless-homerow-mods) work and configured on the BASE layer with balanced flavor on both halves (280 ms tapping-term, and quick-tap with prior-idle tuning).
-- **Thumb-scroll mode:** Hold the left-most thumb button (K36) while moving the trackball to turn motion into scroll.
-- **Precision cursor mode:** Double-tap, then hold K36 to drop the pointer speed, release to return to normal speed.
-- **Mouse-Click + Symbol-Layer - K37**
-    - Tap: Left mouse click
-    - Tap & Hold: Layer 3 (symbols) while the key is held
-    - Double-Tap & Hold: holds the left mouse button
-    - Tripple-Tap: Double mouse click
-- **Backspace + Number-Layer - K38**
-    - Tap: Backspace
-    - Hold: Layer 1 (numbers) while the key is held
-    - Double-Tap & Hold: Keeps Backspace held
-- **Bluetooth profile quick-swap:** Jump to the EXTRAS layer and tap the dedicated BT-select keys to pair or switch among up to four saved hosts (plus BT CLR to forget all).
+- **42-key layout:** 36 main keys + 6 thumb keys (3 per side) for ergonomic typing
+- **Layer-tap on X key:** Hold X (K26) to access SCROLL layer (7) for trackball scrolling
+- **Thumb-scroll mode:** Access SCROLL layer (7) to convert trackball motion into scroll events
+- **Precision cursor mode (SLOW layer):** Accessible via layer 6 for detailed cursor work with reduced pointer speed
+- **K37 - Layer 1 (NUM) Access:**
+    - Hold: Activates NUM layer for numbers and symbols
+- **K38 - Space:**
+    - Tap: Space
+- **K40 - Layer 3 (MOUSE) Access:**
+    - Hold: Activates MOUSE layer for navigation and mouse controls
+- **Bluetooth profile quick-swap:** Jump to the EXTRAS layer (5) and tap the dedicated BT-select 
+  keys to pair or switch among up to four saved hosts (plus BT CLR to forget all)
 - **PMW3610 low power trackball sensor driver:** Provided by [badjeff](https://github.com/badjeff/zmk-pmw3610-driver)
     - Patched to remove build warnings and prevent cursor jump on wake
-- **Hold-tap side-aware triggers:** Each HRM key only becomes a modifier if the opposite half is active, preventing accidental holds while one-handed.
-- **Quick-tap / prior-idle:** Tuned for faster mod-vs-tap detection.
-- **ZMK Studio:** Supported on BT builds for quick and easy keymap adjustments. Dongle support will come soon.
+- **Modifier keys readily accessible:** Left Shift, Left Ctrl on home row; Left GUI/Win and Right Alt on thumb keys
+- **ZMK Studio:** Supported on BT builds for real-time keymap adjustments. Dongle support coming soon.
 
 ---
 
