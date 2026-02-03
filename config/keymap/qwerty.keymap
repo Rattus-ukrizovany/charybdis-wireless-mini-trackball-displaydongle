@@ -27,15 +27,14 @@
     // ╰──────┴──────┴──────┼──────┼──────┼──────┤  ├──────┼──────┼──────┴──────┴──────┴──────╯
     //                         36     37     38        39     40
     //                      ╰──────┴──────┴──────╯  ╰──────┴──────╯
-    // #define BASE    0
-    // #define NUM     1
-    // #define NAV     2
-    // #define bing     3
-    // #define SYM     4
-    // #define EXTRAS  5
-    // #define SLOW    6
-    // #define SCROLL  7
-    // #define FUNC    8
+ // #define BASE    0
+// #define NUM     1
+// #define NAV     2
+// #define SYM     3
+// #define GAME    4
+// #define EXTRAS  5
+// #define SLOW    6
+// #define SCROLL  7
 
     keymap {
         compatible = "zmk,keymap";
@@ -70,7 +69,7 @@
             >;
         };
 
-        bing {
+        SYM {
             display-name = "Nav";
             bindings = <
 &none    &msc MOVE_LEFT  &msc MOVE_UP    &none         &msc MOVE_DOWN   &msc MOVE_RIGHT    &trans      &trans          &trans     &trans     &trans           &none
@@ -80,7 +79,7 @@
             >;
         };
 
-        SYM {
+        GAME {
             display-name = "Sym";
             bindings = <
 &none      &kp TILDE  &kp DLLR     &kp CARET  &trans         &trans    &kp PLUS      &kp AMPS   &kp LBKT  &kp RBKT  &kp LT     &kp GT
@@ -131,4 +130,5 @@
         };
     };
 };
+
 
