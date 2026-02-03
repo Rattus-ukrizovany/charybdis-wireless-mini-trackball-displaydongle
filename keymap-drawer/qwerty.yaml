@@ -42,7 +42,7 @@ layers:
   - SPACE
   - ENTER
   - Num
-  Second:
+  Num:
   - {t: ▽, type: trans}
   - '1'
   - '2'
@@ -84,7 +84,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  Num:
+  Nav:
   - ''
   - ''
   - ''
@@ -126,7 +126,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {type: held}
-  Nav:
+  Sym:
   - ''
   - WHEEL L
   - WHEEL D
@@ -168,7 +168,7 @@ layers:
   - ''
   - ''
   - {t: ▽, type: trans}
-  Sym:
+  Game:
   - ''
   - '~'
   - $
@@ -336,59 +336,4 @@ layers:
   - ''
   - ''
   - {t: ▽, type: trans}
-  Functional:
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - F3
-  - F10
-  - F11
-  - F12
-  - ''
-  - ''
-  - TAB
-  - LCMD
-  - LALT
-  - LSHIFT
-  - LCTRL
-  - BACK SPACE
-  - F2
-  - F7
-  - F8
-  - F9
-  - PRINT SCREEN
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - F1
-  - F4
-  - F5
-  - F6
-  - ''
-  - ''
-  - ''
-  - ''
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-combos:
-- p: [17, 18]
-  k: CAPS WORD
-  l: [Base]
-- p: [38, 39]
-  k: L_BASE L_EXTRA
-- p: [25, 26]
-  k: L CLK
-- p: [26, 27]
-  k: Mid CLK
-- p: [27, 28]
-  k: R CLK
-- p: [16, 37]
-  k: Slow
+ 
