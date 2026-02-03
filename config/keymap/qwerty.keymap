@@ -28,9 +28,9 @@
     //                         36     37     38        39     40
     //                      ╰──────┴──────┴──────╯  ╰──────┴──────╯
     // #define BASE    0
-    // #define RUS     1
-    // #define NUM     2
-    // #define NAV     3
+    // #define NUM     1
+    // #define NAV     2
+    // #define bing     3
     // #define SYM     4
     // #define EXTRAS  5
     // #define SLOW    6
@@ -131,3 +131,4 @@
         };
     };
 };
+
