@@ -217,9 +217,9 @@ This firmware supports multiple keyboard layouts out of the box:
 
 | Layout | File | Status | Notes |
 |--------|------|--------|-------|
-| **QWERTY** | `config/keymap/qwerty.keymap` | ✅ Primary | Standard English layout |
-| **Polish** | Custom config | ✅ Supported | See [Polish Layout](#polish-layout) |
-| **Russian** | Custom config | ✅ Supported | See [Russian Layout](#russian-layout) |
+| **QWERTY** | `config/keymap/qwerty.keymap` | Primary | Standard English layout |
+| **Polish** | Custom config | Supported | See [Polish Layout](#polish-layout) |
+| **Russian** | Custom config | Supported | See [Russian Layout](#russian-layout) |
 
 ### Polish Layout
 
