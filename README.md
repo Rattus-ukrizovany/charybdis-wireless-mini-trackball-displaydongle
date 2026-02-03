@@ -213,9 +213,17 @@ For detailed trackball customization, see [Modifying Trackball Behavior](#modify
 
 ### Dongle Display Support
 
-> **Note:** Display support for the dongle is currently under development. Check the [zmk-dongle-screen](https://github.com/janpfischer/zmk-dongle-screen) repository for the latest updates.
+The dongle configuration includes support for a **1.69" SPI display** to show status information. The `dongle_screen` shield is included in the dongle build (see `build.yaml`).
 
-The dongle can be equipped with a **1.69" SPI display** for status information. Wiring guide available in `docs/nice_nano_wire_guide.md`.
+**Hardware:**
+- 1.69" SPI display module ([non-touch version](https://www.waveshare.com/1.69inch-touch-lcd-module.htm))
+- Wiring guide available in `docs/nice_nano_wire_guide.md`
+
+**Configuration:**
+- Display shield: `dongle_screen` (included in dongle build)
+- Based on [zmk-dongle-screen](https://github.com/janpfischer/zmk-dongle-screen) repository
+
+The display shows keyboard status, battery levels, active layer information, and connection status.
 
 ---
 
@@ -503,13 +511,6 @@ This keyboard features **6 thumb keys total** (3 per side):
 
 The 6th thumb key (K41, Right Alt) provides easy access to Polish characters and other AltGr-based symbols when using appropriate OS keyboard layouts.
 
-🏠 Home-Row Mods
-| Side                | Hold = Modifier              | Tap = Letter / Key  |
-| ------------------- | ---------------------------- | ------------------- |
-| Left                | **Gui / Alt / Shift / Ctrl** | `A S D F`           |
-| Right               | **Ctrl / Shift / Alt / Gui** | `J K L ;`           |
-
-
 🔗 Combos
 | Trigger Keys              | Result                                 |
 | ------------------------- | -------------------------------------- |
@@ -523,23 +524,19 @@ The 6th thumb key (K41, Right Alt) provides easy access to Polish characters and
 
 ⚙️ Other Highlights
 - **42-key layout:** 36 main keys + 6 thumb keys (3 per side) for ergonomic typing
-- **Timeless home row mods:** Based on [urob's](https://github.com/urob/zmk-config#timeless-homerow-mods) implementation, configured on the BASE layer with balanced flavor on both halves (280 ms tapping-term, and quick-tap with prior-idle tuning).
-- **Thumb-scroll mode:** Hold the X key (K26, layer-tap to SCROLL layer 7) while moving the trackball to convert motion into scroll events.
-- **Precision cursor mode (SLOW layer):** Accessible via layer 6 for detailed cursor work with reduced pointer speed.
+- **Layer-tap on X key:** Hold X (K26) to access SCROLL layer (7) for trackball scrolling
+- **Thumb-scroll mode:** Access SCROLL layer (7) to convert trackball motion into scroll events
+- **Precision cursor mode (SLOW layer):** Accessible via layer 6 for detailed cursor work with reduced pointer speed
 - **K37 - Layer 1 (NUM) Access:**
-    - Tap: Access number layer
-    - Hold: Keeps NUM layer active
+    - Hold: Activates NUM layer for numbers and symbols
 - **K38 - Space:**
     - Tap: Space
-    - Hold: Space hold
 - **K40 - Layer 3 (MOUSE) Access:**
-    - Tap: Access mouse layer  
-    - Hold: Keeps MOUSE layer active
-- **Bluetooth profile quick-swap:** Jump to the EXTRAS layer (5) and tap the dedicated BT-select keys to pair or switch among up to four saved hosts (plus BT CLR to forget all).
+    - Hold: Activates MOUSE layer for navigation and mouse controls
+- **Bluetooth profile quick-swap:** Jump to the EXTRAS layer (5) and tap the dedicated BT-select keys to pair or switch among up to four saved hosts (plus BT CLR to forget all)
 - **PMW3610 low power trackball sensor driver:** Provided by [badjeff](https://github.com/badjeff/zmk-pmw3610-driver)
     - Patched to remove build warnings and prevent cursor jump on wake
-- **Hold-tap side-aware triggers:** Each home-row mod key only becomes a modifier if the opposite half is active, preventing accidental holds while one-handed.
-- **Quick-tap / prior-idle:** Tuned for faster mod-vs-tap detection.
+- **Modifier keys readily accessible:** Left Shift, Left Ctrl on home row; Left GUI/Win and Right Alt on thumb keys
 - **ZMK Studio:** Supported on BT builds for real-time keymap adjustments. Dongle support coming soon.
 
 ---
