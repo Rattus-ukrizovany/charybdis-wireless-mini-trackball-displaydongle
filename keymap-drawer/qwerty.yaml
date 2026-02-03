@@ -1,6 +1,6 @@
 layout: {zmk_keyboard: qwerty}
 layers:
-  Base:
+  Rattus:
   - TAB
   - Q
   - W
@@ -12,7 +12,7 @@ layers:
   - I
   - O
   - P
-  - BACK SPACE
+  - BACKSPACE
   - LEFT SHIFT
   - A
   - S
@@ -38,11 +38,11 @@ layers:
   - /
   - ESC
   - LEFT WIN
-  - Second
+  - Numbers
   - SPACE
   - ENTER
-  - Num
-  Num:
+  - Media
+  Numbers:
   - {t: ▽, type: trans}
   - '1'
   - '2'
@@ -62,8 +62,8 @@ layers:
   - $
   - '%'
   - {t: ▽, type: trans}
-  - L CLK
-  - R CLK
+  - '&mkp LCLK'
+  - '&mkp RCLK'
   - (
   - )
   - {t: ▽, type: trans}
@@ -84,7 +84,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  Nav:
+  Media:
   - ''
   - ''
   - ''
@@ -126,13 +126,13 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {type: held}
-  Sym:
+  Nav:
   - ''
-  - WHEEL L
-  - WHEEL D
+  - '&msc MOVE_LEFT'
+  - '&msc MOVE_UP'
   - ''
-  - WHEEL U
-  - WHEEL R
+  - '&msc MOVE_DOWN'
+  - '&msc MOVE_RIGHT'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -140,22 +140,22 @@ layers:
   - {t: ▽, type: trans}
   - ''
   - TAB
-  - BACK
+  - '&mkp MB4'
   - LALT
   - LSHFT
   - LCTRL
-  - FWD
+  - '&mkp MB5'
   - INSERT
-  - LEFT
+  - LEFT ARROW
   - DOWN
   - UP
-  - RIGHT
+  - RIGHT ARROW
   - ''
   - ''
-  - MOVE L
-  - MOVE D
-  - MOVE UP
-  - MOVE R
+  - '&mmv MOVE_LEFT'
+  - '&mmv MOVE_DOWN'
+  - '&mmv MOVE_UP'
+  - '&mmv MOVE_RIGHT'
   - ''
   - DELETE
   - HOME
@@ -168,7 +168,7 @@ layers:
   - ''
   - ''
   - {t: ▽, type: trans}
-  Game:
+  Sym:
   - ''
   - '~'
   - $
@@ -185,9 +185,9 @@ layers:
   - _
   - <
   - '>'
-  - BACK SPACE
+  - BACKSPACE
   - {t: ▽, type: trans}
-  - '-'
+  - KP MINUS
   - '@'
   - (
   - )
@@ -211,12 +211,12 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   Xtra:
-  - ZMK Studio
+  - '&studio_unlock'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - ''
-  - BRIGHT ▲
+  - BRIGHTNESS INC
   - {t: BT, h: '0'}
   - {t: BT, h: '1'}
   - {t: BT, h: '2'}
@@ -228,24 +228,24 @@ layers:
   - ''
   - ''
   - ''
-  - BRIGHT ▼
+  - BRIGHTNESS DEC
   - ''
   - PREVIOUS
   - PLAY PAUSE
   - STOP
   - NEXT
   - ''
-  - LOCK
-  - UNDO
-  - CUT
-  - COPY
-  - PASTE
+  - AL COFFEE
+  - AC UNDO
+  - AC CUT
+  - AC COPY
+  - AC PASTE
   - ''
   - {t: ▽, type: trans}
   - MUTE
   - VOLUME DOWN
   - VOLUME UP
-  - PRINT SCREEN
+  - PRINTSCREEN
   - ''
   - ''
   - ''
@@ -254,11 +254,11 @@ layers:
   - ''
   Slow:
   - ''
-  - WHEEL L
-  - WHEEL D
+  - '&msc MOVE_LEFT'
+  - '&msc MOVE_UP'
   - ''
-  - WHEEL U
-  - WHEEL R
+  - '&msc MOVE_DOWN'
+  - '&msc MOVE_RIGHT'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -266,22 +266,22 @@ layers:
   - {t: ▽, type: trans}
   - ''
   - TAB
-  - BACK
+  - '&mkp MB4'
   - LALT
   - LSHFT
   - {t: LCTRL, type: held}
-  - FWD
+  - '&mkp MB5'
   - INSERT
-  - LEFT
+  - LEFT ARROW
   - DOWN
   - UP
-  - RIGHT
+  - RIGHT ARROW
   - ''
   - ''
-  - MOVE L
-  - MOVE D
-  - MOVE UP
-  - MOVE R
+  - '&mmv MOVE_LEFT'
+  - '&mmv MOVE_DOWN'
+  - '&mmv MOVE_UP'
+  - '&mmv MOVE_RIGHT'
   - ''
   - DELETE
   - HOME
@@ -296,11 +296,11 @@ layers:
   - {t: ▽, type: trans}
   Scroll:
   - ''
-  - WHEEL L
-  - WHEEL D
+  - '&msc MOVE_LEFT'
+  - '&msc MOVE_UP'
   - ''
-  - WHEEL U
-  - WHEEL R
+  - '&msc MOVE_DOWN'
+  - '&msc MOVE_RIGHT'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -308,22 +308,22 @@ layers:
   - {t: ▽, type: trans}
   - ''
   - TAB
-  - BACK
+  - '&mkp MB4'
   - LALT
   - LSHFT
   - LCTRL
-  - FWD
+  - '&mkp MB5'
   - INSERT
-  - LEFT
+  - LEFT ARROW
   - DOWN
   - UP
-  - RIGHT
+  - RIGHT ARROW
   - ''
   - ''
-  - MOVE L
-  - {t: MOVE D, type: held}
-  - MOVE UP
-  - MOVE R
+  - '&mmv MOVE_LEFT'
+  - {t: '&mmv MOVE_DOWN', type: held}
+  - '&mmv MOVE_UP'
+  - '&mmv MOVE_RIGHT'
   - ''
   - DELETE
   - HOME
@@ -336,4 +336,59 @@ layers:
   - ''
   - ''
   - {t: ▽, type: trans}
- 
+  Functional:
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - F3
+  - F10
+  - F11
+  - F12
+  - ''
+  - ''
+  - TAB
+  - LCMD
+  - LALT
+  - LSHIFT
+  - LCTRL
+  - BACKSPACE
+  - F2
+  - F7
+  - F8
+  - F9
+  - PRINTSCREEN
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - F1
+  - F4
+  - F5
+  - F6
+  - ''
+  - ''
+  - ''
+  - ''
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+combos:
+- p: [17, 18]
+  k: '&caps_word'
+  l: [Rattus]
+- p: [38, 39]
+  k: '&td_bore'
+- p: [25, 26]
+  k: '&mkp LCLK'
+- p: [26, 27]
+  k: '&mkp MCLK'
+- p: [27, 28]
+  k: '&mkp RCLK'
+- p: [16, 37]
+  k: Slow
