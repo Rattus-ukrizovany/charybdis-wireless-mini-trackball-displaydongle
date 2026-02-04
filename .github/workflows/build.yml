@@ -224,9 +224,3 @@ jobs:
         files: combo-artifacts/*.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-
-        with:
-          name: Chary-firmware
-          path: firmwares
