@@ -142,6 +142,31 @@ For automatic builds on every push:
 - Requires GitHub account
 - Limited to GitHub's CI/CD schedule
 
+### Option 3: Download Pre-built Firmware from Releases
+
+For the easiest experience, download pre-built firmware directly from GitHub Releases:
+
+1. **Navigate to the [Releases page](../../releases)**
+2. **Download the latest release** - Each release is automatically created on every push to main
+3. **Extract the ZIP file** for your desired configuration:
+   - `charybdis-qwerty-bt.zip` - Bluetooth build (left and right halves)
+   - `charybdis-qwerty-dongle.zip` - Dongle build (left, right, and dongle)
+   - `charybdis-reset-nanov2.zip` - Settings reset firmware
+
+#### Automatic Release Publishing
+
+This repository automatically publishes firmware releases for every major change:
+
+- **Automatic versioning**: Releases are tagged with date and commit hash (e.g., `v2026.02.10-a1b2c3d`)
+- **Triggered on every push**: Any push to the `main` branch triggers a new release
+- **Includes all variants**: Each release contains all firmware variants (Bluetooth, Dongle, Reset)
+- **Change tracking**: Release notes include commit information and author details
+
+This means you'll always have access to the latest firmware without needing to build it yourself. Perfect for:
+- Quick firmware updates after keymap changes
+- Testing new features without local builds
+- Users who prefer plug-and-play firmware
+
 ---
 
 ## Dongle + Trackball Configuration
