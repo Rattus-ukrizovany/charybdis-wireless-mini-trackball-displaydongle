@@ -38,45 +38,45 @@ layers:
   - /
   - ESC
   - LEFT WIN
-  - Numbers
+  - {t: ESC, h: Numbers}
   - SPACE
-  - ENTER
+  - {t: ENTER, h: Nav}
   - Media
   Numbers:
   - {t: ▽, type: trans}
-  - '1'
-  - '2'
-  - '3'
-  - '4'
-  - '5'
-  - '6'
+  - {t: ▽, type: trans}
+  - DEL
   - '7'
   - '8'
   - '9'
-  - '0'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - DELETE
   - {t: ▽, type: trans}
-  - '!'
-  - '@'
-  - '#'
-  - $
-  - '%'
   - {t: ▽, type: trans}
+  - '@'
+  - '4'
+  - '5'
+  - '6'
+  - '&mkp MCLK'
   - '&mkp LCLK'
   - '&mkp RCLK'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '0'
+  - '1'
+  - '2'
+  - '3'
+  - '['
+  - ']'
   - (
   - )
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -86,16 +86,16 @@ layers:
   - {t: ▽, type: trans}
   Media:
   - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - Sft+1
+  - Sft+2
+  - Sft+3
+  - Sft+4
+  - Sft+5
+  - Sft+6
+  - Sft+7
+  - Sft+8
+  - Sft+9
+  - Sft+0
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -146,7 +146,7 @@ layers:
   - LCTRL
   - '&mkp MB5'
   - INSERT
-  - LEFT ARROW
+  - '='
   - DOWN
   - UP
   - RIGHT ARROW
@@ -166,7 +166,7 @@ layers:
   - ''
   - ''
   - ''
-  - ''
+  - {type: held}
   - {t: ▽, type: trans}
   Sym:
   - ''
