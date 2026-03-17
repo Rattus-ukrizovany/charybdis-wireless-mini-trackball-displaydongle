@@ -1,10 +1,13 @@
-﻿# Charybdis Wireless Mini(Dongle+ZMK) - Assembly & Build Guide
+# Charybdis Wireless Mini (Dongle + Display + ZMK) - Assembly & Build Guide
 
-[![.github/workflows/build.yml](https://github.com/280Zo/charybdis-wireless-mini-zmk-firmware/actions/workflows/build.yml/badge.svg)](https://github.com/280Zo/charybdis-wireless-mini-zmk-firmware/actions/workflows/build.yml)
+[![Build](https://github.com/Rattus-ukrizovany/charybdis-wireless-mini-trackball-displaydongle/actions/workflows/build.yml/badge.svg)](https://github.com/Rattus-ukrizovany/charybdis-wireless-mini-trackball-displaydongle/actions/workflows/build.yml)
 
-This comprehensive guide covers the assembly of the **Charybdis Wireless Mini keyboard** with trackball support and the complete firmware building process for both **Bluetooth/USB** and **Dongle** configurations.
-![main_photo](docs/photos/130825.jpg)
-[Additional project photos](docs/photos/130825.jpg)
+This guide covers the assembly of the **Charybdis Wireless Mini keyboard** with PMW3610 trackball support and the firmware building process for both **Bluetooth** and **Dongle + Display** configurations.
+
+> 📷 *Photo coming soon*
+
+[Additional project photos](docs/photos/)
+
 ---
 
 ## Hardware Requirements
@@ -13,27 +16,32 @@ This comprehensive guide covers the assembly of the **Charybdis Wireless Mini ke
 
 | Component | Notes |
 |-----------|-------|
-| **nice!nano v2** | Microcontroller (2 units for split keyboard) |
-| **MX Switch Sockets** | For mechanical switches |
-| **Diodes** | 1N4148 signal diodes (1 per key) |
-| **Stabilizers** | For longer keys (spacebar, etc.) |
+| **nice!nano v2** | Microcontroller – 2 units for keyboard halves, 1 for dongle |
+| **MX Switch Sockets** | For hot-swap mechanical switches |
+| **Diodes** | 1N4148 signal diodes (1 per key, row-to-col wiring) |
 | **PMW3610 Sensor** | Trackball sensor (right half) |
-| **Mechanical Switches** | MX-compatible switches (36-42 keys depending on layout) |
+| **Mechanical Switches** | MX-compatible (36 keys) |
 | **Keycaps** | Any standard MX keycaps |
-| **USB-C Cable** | For flashing and programming |
+| **USB-C Cable** | For flashing and dongle connection |
 | **Battery** | See [Battery Recommendations](#battery-recommendations) |
 
 For full bill of materials and assembly instructions, refer to the [Charybdis Wireless Mini Build Guide](https://github.com/280Zo/charybdis-wireless-mini-3x6-build-guide).
-Display can be ordered [here(non-touch version)](https://www.waveshare.com/1.69inch-touch-lcd-module.htm).
+
+### Dongle Display & Sensor
+
+The dongle supports a **1.69" SPI display** (non-touch) for status information and an optional **APDS9960 light sensor**.
+
+- Display can be ordered [here (non-touch version)](https://www.waveshare.com/1.69inch-touch-lcd-module.htm)
+- Wiring guide: [`docs/nice_nano_wire_guide.md`](docs/nice_nano_wire_guide.md)
 
 ### Case Files
 
 3D-printable case files are available in the `case/` directory:
 
-- **Left half**: `left_case.stl`, `left_plate.stl`
-- **Right half**: `right_case.stl`, `right_plate.stl`
-- **Trackball mount**: Files in `case/trackball/`
-- **Dongle case**: Files in `case/dongle/`
+- **Keyboard halves**: `case/keyboard/`
+- **Trackball mount**: `case/trackball/`
+- **Dongle case**: `case/dongle/`
+- **Keycaps**: `case/keycaps/`
 
 ---
 
@@ -55,7 +63,7 @@ Display can be ordered [here(non-touch version)](https://www.waveshare.com/1.69i
 1. **Form Factor**: Ensure the battery fits within the allocated space in your case
 2. **Connector**: Use JST-PH 2.0 connectors for consistency
 3. **Quality**: Choose reputable brands (e.g., Adafruit, Sparkfun)
-4. **Voltage**: Should be 3.7V nominal (standard LiPo/LiPo)
+4. **Voltage**: Should be 3.7V nominal (standard LiPo)
 
 #### Left Half Battery
 
@@ -92,11 +100,8 @@ cd local-build
 # Build all firmwares
 docker-compose run --rm builder
 
-# Build specific shield (e.g., charybdis_bt for Bluetooth only)
+# Build specific shield (e.g., bluetooth only)
 docker-compose run --rm builder -s charybdis_bt
-
-# Build specific keymap (e.g., qwerty only)
-docker-compose run --rm builder -k qwerty
 
 # Enable USB logging for debugging
 docker-compose run --rm builder -l true
@@ -104,18 +109,19 @@ docker-compose run --rm builder -l true
 
 #### Output
 
-The built firmware files will be in `build_output/` organized by shield and keymap:
+The built firmware files will be in `build_output/` organized by build name:
 
 ```
 build_output/
-├── charybdis_bt_qwerty/
+├── qwerty-bt/
 │   ├── charybdis_left.uf2
 │   └── charybdis_right.uf2
-├── charybdis_dongle_qwerty/
+├── qwerty-dongle/
 │   ├── charybdis_left.uf2
 │   ├── charybdis_right.uf2
 │   └── charybdis_dongle.uf2
-└── ...
+└── reset-nanov2/
+    └── settings_reset.uf2
 ```
 
 See the [local build README](local-build/README.md) for more details, including USB logging and troubleshooting.
@@ -140,7 +146,6 @@ For automatic builds on every push:
 
 - Slower feedback loop (~5-10 minutes per build)
 - Requires GitHub account
-- Limited to GitHub's CI/CD schedule
 
 ### Option 3: Download Pre-built Firmware from Releases
 
@@ -150,87 +155,50 @@ For the easiest experience, download pre-built firmware directly from GitHub Rel
 2. **Download the latest release** - Each release is automatically created on every push to main
 3. **Extract the ZIP file** for your desired configuration:
    - `charybdis-qwerty-bt.zip` - Bluetooth build (left and right halves)
-   - `charybdis-qwerty-dongle.zip` - Dongle build (left, right, and dongle)
+   - `charybdis-qwerty-dongle.zip` - Dongle build (left, right, and dongle with display)
    - `charybdis-reset-nanov2.zip` - Settings reset firmware
 
 #### Automatic Release Publishing
 
-This repository automatically publishes firmware releases for every major change:
+This repository automatically publishes firmware releases on every push to `main`:
 
+- **Triggered on every push**: Any push to the `main` branch creates a new release
 - **Automatic versioning**: Releases are tagged with date and commit hash (e.g., `v2026.02.10-a1b2c3d`)
-- **Triggered on every push**: Any push to the `main` branch triggers a new release
 - **Includes all variants**: Each release contains all firmware variants (Bluetooth, Dongle, Reset)
 - **Change tracking**: Release notes include commit information and author details
 
-This means you'll always have access to the latest firmware without needing to build it yourself. Perfect for:
-- Quick firmware updates after keymap changes
-- Testing new features without local builds
-- Users who prefer plug-and-play firmware
-
 ---
 
-## Dongle + Trackball Configuration
+## Dongle + Trackball + Display Configuration
 
 ### Overview
 
-The dongle configuration allows you to use a **wireless dongle with USB connection**, supporting the **PMW3610 trackball sensor** for an all-in-one wireless input device.
+The dongle configuration allows you to use a **wireless USB dongle** that acts as the central device, supporting the **PMW3610 trackball sensor** forwarded wirelessly from the right half and showing status on a **1.69" SPI display**.
 
 ### Components Required
 
-- **Charybdis Dongle** (receiver with nice!nano v2)
-- **Left and right keyboard halves**
-- **PMW3610 trackball sensor** (mounted on right half)
-- **USB-C cable** (for connection to computer)
+- **Dongle** (nice!nano v2 + 1.69" SPI display + optional APDS9960 light sensor)
+- **Left and right keyboard halves** (each with nice!nano v2 and battery)
+- **PMW3610 trackball sensor** (soldered to right half)
+- **USB-C cable** (for dongle connection to computer)
 - **Appropriate batteries** (see [Battery Recommendations](#battery-recommendations))
 
 ### Configuration Files
 
-Dongle-specific configurations are in `boards/shields/charybdis_dongle/`:
+| Shield | Location | Purpose |
+|--------|----------|---------|
+| `charybdis_left` | `boards/shields/charybdis_bt/` | Left half (BT & Dongle builds) |
+| `charybdis_right` | `boards/shields/charybdis_bt/` | Right half with PMW3610 |
+| `charybdis_dongle` + `dongle_screen` | `boards/shields/charybdis_dongle/` | Dongle with display |
 
-- `charybdis_dongle.conf` - Dongle-specific settings
-- `charybdis_dongle.overlay` - Pin definitions
-- Keyboard halves use same files as Bluetooth version
-
-### Trackball + Dongle Features
-
-- **Full trackball support** with PMW3610 sensor
-- **USB connection** to computer
-- **Shared configuration** between Bluetooth and Dongle modes
-
-### Building Dongle Firmware with Trackball
+### Building Dongle Firmware
 
 ```bash
 cd local-build
-
-# Build dongle firmware with trackball support
-docker-compose run --rm builder -s charybdis_dongle -k qwerty
+docker-compose run --rm builder
 ```
 
-### Trackball Behavior Configuration
-
-All trackball parameters are configured in `config/charybdis_pointer.dtsi`:
-
-```dts
-// Example: Adjust pointer speed
-// Modify values in charybdis_pointer.dtsi
-pointer {
-    speed = <1000>;      // Pointer speed multiplier
-    acceleration = <0>;  // Acceleration curve
-};
-
-// Example: Configure scrolling
-scrolling {
-    speed = <5>;         // Scroll speed
-};
-```
-
-For detailed trackball customization, see [Modifying Trackball Behavior](#modifying-trackball-behavior) in the main README.
-
-### Dongle Display Support
-
-**Note:** Display support for the dongle is currently under development. Check the [zmk-dongle-screen](https://github.com/janpfischer/zmk-dongle-screen) repository for the latest updates.
-
-The dongle can be equipped with a **1.69" SPI display** for status information. Wiring guide available in `docs/nice_nano_wire_guide.md`.
+The dongle build (`qwerty-dongle`) automatically includes the `dongle_screen` shield for display support.
 
 ---
 
@@ -242,28 +210,14 @@ This firmware supports multiple keyboard layouts out of the box:
 
 | Layout | File | Status | Notes |
 |--------|------|--------|-------|
-| **QWERTY** | `config/keymap/qwerty.keymap` | Primary | Standard English layout |
-| **Polish** | Custom config | Supported | See [Polish Layout](#polish-layout) |
-| **Russian** | Custom config | Supported | See [Russian Layout](#russian-layout) |
+| **QWERTY** | `config/keymap/qwerty.keymap` | Active (built by default) | Standard English layout |
+| **Polish characters** | `config/keys_pl.h` | Included | Keys available in SYM layer |
+| **Russian characters** | `config/keys_ru.h` | Included | Available for custom use |
+| **Extra layouts** | `extra-keymaps/` | Reference | Alternate Czech/other layouts |
 
-### Polish Layout
+### Polish Characters
 
-Polish keyboard layout is fully supported through custom key mappings. Configuration files:
-
-- `config/keys_pl.h` - Polish character definitions
-- Add to your keymap: `#include "keys_pl.h"`
-
-Polish-specific keys include: Ą, Ć, Ę, Ł, Ń, Ó, Ś, Ź, Ż and their uppercase variants. No need to switch. Use RAlt for special characters.
-
-### Russian Layout
-
-Russian (Cyrillic) keyboard layout is fully supported. Configuration files:
-
-- `config/keys_ru.h` - Russian character definitions
-- Add to your keymap: `#include "keys_ru.h"`
-
-Russian-specific keys provide access to Cyrillic alphabet and common symbols.
-To enable Russian input, switch your OS keyboard layout to Russian(cmd+space) and switch to Russian layer(will enable all required inputs).
+Polish character definitions (`config/keys_pl.h`) are included in the keymap. Polish-specific keys include: Ą, Ć, Ę, Ł, Ń, Ó, Ś, Ź, Ż and their uppercase variants. The `PL_EURO` key and others are accessible from the SYM layer.
 
 ### Adding Custom Layouts
 
@@ -272,20 +226,7 @@ To add a new layout:
 1. Create a new `.keymap` file in `config/keymap/`
 2. Define your key mappings following ZMK syntax
 3. Reference any custom key definitions (e.g., `keys_pl.h`, `keys_ru.h`)
-4. Build the firmware - it will automatically detect and build your new layout
-
-Example:
-
-```bash
-# Copy and modify an existing keymap
-cp config/keymap/qwerty.keymap config/keymap/my_layout.keymap
-
-# Edit my_layout.keymap with your custom mappings
-
-# Build - it will automatically include my_layout
-cd local-build
-docker-compose run --rm builder
-```
+4. Build the firmware -- it will automatically detect and build your new layout
 
 ---
 
@@ -295,7 +236,7 @@ docker-compose run --rm builder
 
 - Downloaded firmware (`.uf2` files)
 - USB-C cable
-- One device at a time (you'll repeat for each half/dongle)
+- One device at a time (repeat for each half/dongle)
 
 ### Flashing Steps
 
@@ -324,9 +265,7 @@ docker-compose run --rm builder
 4. **Wait for programming**
 
    - The file will be copied
-   - The device will automatically unmount
-   - LED will flash indicating successful programming
-   - The device will restart
+   - The device will automatically unmount and restart
 
 5. **Repeat for other halves**
 
@@ -359,60 +298,39 @@ This clears any previous pairing information and ensures a clean state.
 
 ## Modifying Trackball Behavior
 
-The trackball uses ZMK's modular input processor system for easy customization.
+The trackball uses ZMK's modular input processor system. All settings are in `config/charybdis_pointer.dtsi`.
 
-### Configuration File
-
-All trackball settings are in `config/charybdis_pointer.dtsi`.
-
-### Common Adjustments
-
-#### Pointer Speed
+### Current Configuration
 
 ```dts
-// In charybdis_pointer.dtsi
-pointer {
-    speed = <1000>;  // Increase for faster movement (1000-2000)
-};
-```
+&trackball_listener {
+    /* base pointer speed (scaler: 5/5 = 1x) */
+    input-processors = <&zip_xy_scaler 5 5>;
 
-#### Acceleration
+    /* SCROLL layer (layer 7): trackball becomes scroll wheel */
+    scroller {
+        layers           = <7>;
+        input-processors = <
+            &zip_xy_scaler 1 15               // scroll speed
+            &zip_xy_to_scroll_mapper          // convert XY to scroll
+            &zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)
+        >;
+    };
 
-```dts
-// Add acceleration curve
-pointer {
-    acceleration = <250>;  // Adjust sensitivity ramp-up
-};
-```
-
-#### Scroll Behavior
-
-```dts
-// Configure scrolling
-scrolling {
-    speed = <5>;  // Scroll distance per movement
-};
-```
-
-#### Precision Mode
-
-```dts
-// Slow pointer speed for detailed work
-slow-pointer {
-    speed = <200>;  // Much slower than normal
+    /* SLOW layer (layer 6): precision pointer */
+    slow_pointer {
+        layers           = <6>;
+        input-processors = <&zip_xy_scaler 2 6>;  // ~1/3 speed
+    };
 };
 ```
 
 ### Building After Changes
 
-After modifying `charybdis_pointer.dtsi`:
-
 ```bash
 cd local-build
 docker-compose run --rm builder
 ```
-
-The changes will be compiled into the new firmware.
 
 ---
 
@@ -427,9 +345,8 @@ The changes will be compiled into the new firmware.
 3. Open [zmk.studio](https://zmk.studio/) in your browser
 4. Connect to keyboard
 5. Modify keymaps in real-time
-6. Changes persist on the device
 
-Dongle support is coming soon.
+> **Note:** ZMK Studio is supported on Bluetooth builds only. Dongle support is not yet available.
 
 ### Using Keymap Editor GUI
 
@@ -445,7 +362,7 @@ Dongle support is coming soon.
 
 ### Direct Keymap Editing
 
-Edit `config/keymap/qwerty.keymap` (or your layout file) directly:
+Edit `config/keymap/qwerty.keymap` directly:
 
 ```dts
 // Add layers, modify behaviors, change keycodes
@@ -461,55 +378,55 @@ Edit `config/keymap/qwerty.keymap` (or your layout file) directly:
 
 To see all the layers check out the [full render](keymap-drawer/qwerty.svg).
 
-| # | Layer       | Purpose                                      |
-|---|-------------|----------------------------------------------|
-| 0 | **BASE**    | Standard typing with home-row mods(ENG+POL)  |
-| 1 | **RUSSIAN** | Russian layout with home-row mods            |
-| 2 | **NUM**     | Numbers + function keys                      |
-| 3 | **NAV**     | Navigation, arrows, paging                   |
-| 4 | **SYM**     | Symbols and punctuation                      |
-| 5 | **EXTRAS**  | Shortcuts, Bluetooth controls                |
-| 6 | **SLOW**    | Low-speed pointer mode                       |
-| 7 | **SCROLL**  | Vertical/horizontal scrolling and navigation |
-| 8 | **FUNC**    | Functional                                   |
+| # | Layer      | Display Name  | Purpose                                          |
+|---|------------|---------------|--------------------------------------------------|
+| 0 | **BASE**   | Rattus        | Standard QWERTY typing                           |
+| 1 | **NUM**    | Numbers       | Numbers 0–9, @, brackets, parentheses           |
+| 2 | **NAV**    | Media         | Symbols row, media controls, arrows, volume      |
+| 3 | **SYM**    | Nav           | Mouse movement/scroll, modifier keys, nav        |
+| 4 | **GAME**   | Sym           | Symbols: `~`, `$`, `^`, `+`, `&`, `{}`, `<>` etc.|
+| 5 | **EXTRAS** | Xtra          | Bluetooth profiles, brightness, sleep, system    |
+| 6 | **SLOW**   | Slow          | Precision (slow) pointer mode                    |
+| 7 | **SCROLL** | Scroll        | Trackball → scroll wheel                         |
+| 8 | **FUNC**   | Functional    | F1–F12 function keys                             |
 
-### Home-Row Mods
-| Side                | Hold = Modifier              | Tap = Letter / Key  |
-| ------------------- | ---------------------------- | ------------------- |
-| Left                | **Gui / Alt / Shift / Ctrl** | `A S D F`           |
-| Right               | **Ctrl / Shift / Alt / Gui** | `J K L ;`           |
+### Thumb Cluster (K36–K40)
 
+| Key | Tap         | Hold           |
+|-----|-------------|----------------|
+| K36 | LEFT_WIN    | LEFT_WIN       |
+| K37 | ESC         | NUM layer (1)  |
+| K38 | SPACE       | SPACE          |
+| K39 | ENTER       | SYM layer (3)  |
+| K40 | (none) / hold only | NAV layer (2)  |
 
 ### Combos
-| Trigger Keys              | Result                                 |
-| ------------------------- | -------------------------------------- |
-| `K17 + K18`               | **Caps Word** (one-shot words in CAPS) |
-| `K25 + K26`               | **Left Click**                         |
-| `K26 + K27`               | **Middle Click**                       |
-| `K27 + K28`               | **Right Click**                        |
-| `K13 + K22`               | Toggle **MOUSE** layer                 |
-| `K38 + K39` (thumb cluster)| Layer-swap **BASE <-> EXTRAS**         |
 
+| Trigger Keys               | Result                                  |
+| -------------------------- | --------------------------------------- |
+| `K17 + K18`                | **Caps Word** (one-shot CAPS)           |
+| `K25 + K26`                | **Left Click**                          |
+| `K26 + K27`                | **Middle Click**                        |
+| `K27 + K28`                | **Right Click**                         |
+| `K16 + K37`                | **Precision mouse** (SLOW layer)        |
+| `K38 + K39` (thumb cluster)| Layer-swap **BASE <-> EXTRAS**            |
+
+### Trackball Modes
+
+| Activation               | Mode    | Behavior                              |
+|--------------------------|---------|---------------------------------------|
+| Hold **X** (K26)         | SCROLL  | Trackball becomes vertical/horizontal scroll wheel |
+| Combo **K16 + K37**      | SLOW    | Pointer speed reduced to ~1/3 for precision work   |
 
 ### Additional Features
-- **Timeless home row mods:** Based on [urob's](https://github.com/urob/zmk-config#timeless-homerow-mods) work and configured on the BASE layer with balanced flavor on both halves (280 ms tapping-term, and quick-tap with prior-idle tuning).
-- **Thumb-scroll mode:** Hold the left-most thumb button (K36) while moving the trackball to turn motion into scroll.
-- **Precision cursor mode:** Double-tap, then hold K36 to drop the pointer speed, release to return to normal speed.
-- **Mouse-Click + Symbol-Layer - K37**
-    - Tap: Left mouse click
-    - Tap & Hold: Layer 3 (symbols) while the key is held
-    - Double-Tap & Hold: holds the left mouse button
-    - Tripple-Tap: Double mouse click
-- **Backspace + Number-Layer - K38**
-    - Tap: Backspace
-    - Hold: Layer 1 (numbers) while the key is held
-    - Double-Tap & Hold: Keeps Backspace held
+
+- **Scroll layer (SCROLL / layer 7):** Hold the **X** key (K26) while moving the trackball to turn motion into scroll. Y-axis is inverted for natural scroll feel.
+- **Precision cursor mode (SLOW / layer 6):** Activate via combo K16+K37 to reduce pointer speed to ~1/3 for fine-grained cursor control.
 - **Bluetooth profile quick-swap:** Jump to the EXTRAS layer and tap the dedicated BT-select keys to pair or switch among up to four saved hosts (plus BT CLR to forget all).
-- **PMW3610 low power trackball sensor driver:** Provided by [badjeff](https://github.com/badjeff/zmk-pmw3610-driver)
-    - Patched to remove build warnings and prevent cursor jump on wake
-- **Hold-tap side-aware triggers:** Each HRM key only becomes a modifier if the opposite half is active, preventing accidental holds while one-handed.
-- **Quick-tap / prior-idle:** Tuned for faster mod-vs-tap detection.
-- **ZMK Studio:** Supported on BT builds for quick and easy keymap adjustments. Dongle support will come soon.
+- **PMW3610 low-power trackball sensor driver:** Provided by [280Zo](https://github.com/280Zo/zmk-pmw3610-driver) (fork of badjeff's driver) — patched to remove build warnings and prevent cursor jump on wake.
+- **Hold-tap behaviors:** Side-aware hold-tap configurations (`ht_left`, `ht_right`) defined in `behaviors.dtsi` for use in custom keymaps.
+- **ZMK Studio:** Supported on Bluetooth builds (`qwerty-bt`) for quick and easy keymap adjustments. Dongle support not yet available.
+- **Dongle display:** Powered by [zmk-dongle-screen v0.1.2](https://github.com/janpfischer/zmk-dongle-screen) — shows keyboard status on the 1.69" SPI display connected to the dongle.
 
 ---
 
@@ -584,14 +501,13 @@ This project builds upon the excellent work of the ZMK community and specialized
 #### Charybdis Keyboard Hardware
 - **[280Zo/charybdis-wireless-mini-3x6-build-guide](https://github.com/280Zo/charybdis-wireless-mini-3x6-build-guide)** - Wireless Charybdis keyboard design and assembly guide
 
-#### ZMK Firmware
-- **[ZMK Firmware Project](https://zmk.dev/)** - Modern open-source keyboard firmware for wireless input devices
-- **[janpfischer/zmk-dongle-screen](https://github.com/janpfischer/zmk-dongle-screen)** - ZMK dongle with display support and configuration examples
+#### ZMK Firmware & Dependencies
+- **[ZMK Firmware v0.3.0](https://zmk.dev/)** - Modern open-source keyboard firmware for wireless input devices
+- **[janpfischer/zmk-dongle-screen v0.1.2](https://github.com/janpfischer/zmk-dongle-screen)** - ZMK dongle with display support (used in `qwerty-dongle` build)
+- **[280Zo/zmk-pmw3610-driver](https://github.com/280Zo/zmk-pmw3610-driver)** - PMW3610 trackball sensor driver for ZMK (fork with build warning fixes and wake-up cursor jump prevention)
 - **[nickcoutsos/keymap-editor](https://github.com/nickcoutsos/keymap-editor)** - Visual keymap editor for ZMK
 - **[caksoylar/keymap-drawer](https://github.com/caksoylar/keymap-drawer)** - Keymap visualization tool
-- **[badjeff/zmk-pmw3610-driver](https://github.com/badjeff/zmk-pmw3610-driver)** - PMW3610 trackball sensor driver for ZMK
-- **[urob/zmk-config](https://github.com/urob/zmk-config)** - Timeless home-row mods implementation
-- **[eigatech](https://github.com/eigatech)** - Community contributions
+- **[urob/zmk-config](https://github.com/urob/zmk-config)** - Hold-tap behavior inspiration
 
 ---
 
@@ -599,12 +515,13 @@ This project builds upon the excellent work of the ZMK community and specialized
 
 - **[ZMK Documentation](https://zmk.dev/docs/)** - Official ZMK guide and API reference
 - **[PMW3610 Sensor Specs](https://www.pixart.com.tw/)** - Sensor specifications
+- **[nice!nano Pinout](https://nicekeyboards.com/docs/nice-nano/pinout-schematic)** - Pin reference for wiring the display and sensor
 
 ---
 
 ## Support & Issues
 
-- **Found a bug?** Open an issue on the [main repository](https://github.com/280Zo/charybdis-wireless-mini-zmk-firmware)
+- **Found a bug?** Open an issue on this repository
 - **Need help?** Check the troubleshooting section or ask in the ZMK community
 - **Have improvements?** Submit a pull request!
 
